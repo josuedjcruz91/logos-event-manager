@@ -1,0 +1,572 @@
+{
+  "info": {
+    "name": "Logos Event Manager — pruebas manuales",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "API local sin autenticación. Leer primero health y schema. No usar Run collection sobre datos reales. IDs vacíos por seguridad: configurar solo IDs de registros ficticios recién creados. Revisar campos reales antes de enviar cuerpos."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:3000/api"
+    },
+    {
+      "key": "clientes_id",
+      "value": ""
+    },
+    {
+      "key": "clientes_body",
+      "value": "{\n  \"nombre\": \"PRUEBA_LOGOS_POSTMAN\",\n  \"telefono\": \"8888-0000\",\n  \"correo\": \"prueba.postman@example.test\",\n  \"notas\": \"Registro ficticio de prueba.\"\n}"
+    },
+    {
+      "key": "servicios_id",
+      "value": ""
+    },
+    {
+      "key": "servicios_body",
+      "value": "{}"
+    },
+    {
+      "key": "eventos_id",
+      "value": ""
+    },
+    {
+      "key": "eventos_body",
+      "value": "{}"
+    },
+    {
+      "key": "empleados_id",
+      "value": ""
+    },
+    {
+      "key": "empleados_body",
+      "value": "{}"
+    },
+    {
+      "key": "proveedores_id",
+      "value": ""
+    },
+    {
+      "key": "proveedores_body",
+      "value": "{}"
+    },
+    {
+      "key": "recurso",
+      "value": "servicios"
+    },
+    {
+      "key": "asignacion_body",
+      "value": "{}"
+    },
+    {
+      "key": "asignacion_key",
+      "value": "{}"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 · Solo lectura",
+      "item": [
+        {
+          "name": "Conectividad MySQL",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/health",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Inspeccionar esquema real",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/schema",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Dashboard real",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/dashboard",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Listar clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/clientes?limit=20&offset=0",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Detalle clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/clientes/{{clientes_id}}",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Listar servicios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/servicios?limit=20&offset=0",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Detalle servicios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/servicios/{{servicios_id}}",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Listar eventos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/eventos?limit=20&offset=0",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Detalle eventos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/eventos/{{eventos_id}}",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Listar empleados",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/empleados?limit=20&offset=0",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Detalle empleados",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/empleados/{{empleados_id}}",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Listar proveedores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/proveedores?limit=20&offset=0",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Detalle proveedores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/proveedores/{{proveedores_id}}",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        },
+        {
+          "name": "Recursos del evento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/eventos/{{eventos_id}}/recursos/{{recurso}}",
+            "description": "Solicitud de consulta. La respuesta procede de la base MySQL configurada."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manual · clientes",
+      "item": [
+        {
+          "name": "Crear clientes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/clientes",
+            "description": "Manual: usar prefijo PRUEBA_LOGOS_. Configurar campos según /schema. Guardar el ID devuelto para este registro nuevo.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{clientes_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Editar clientes",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/clientes/{{clientes_id}}",
+            "description": "Manual: modificar únicamente el registro ficticio recién creado. Enviar campos editables completos, sin PK.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{clientes_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Eliminar clientes",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/clientes/{{clientes_id}}",
+            "description": "Destructiva y manual. Eliminar exclusivamente el registro ficticio creado para la prueba. Revisar restricciones y reglas FK previamente."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manual · servicios",
+      "item": [
+        {
+          "name": "Crear servicios",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/servicios",
+            "description": "Manual: usar prefijo PRUEBA_LOGOS_. Configurar campos según /schema. Guardar el ID devuelto para este registro nuevo.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{servicios_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Editar servicios",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/servicios/{{servicios_id}}",
+            "description": "Manual: modificar únicamente el registro ficticio recién creado. Enviar campos editables completos, sin PK.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{servicios_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Eliminar servicios",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/servicios/{{servicios_id}}",
+            "description": "Destructiva y manual. Eliminar exclusivamente el registro ficticio creado para la prueba. Revisar restricciones y reglas FK previamente."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manual · eventos",
+      "item": [
+        {
+          "name": "Crear eventos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/eventos",
+            "description": "Manual: usar prefijo PRUEBA_LOGOS_. Configurar campos según /schema. Guardar el ID devuelto para este registro nuevo.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{eventos_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Editar eventos",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/eventos/{{eventos_id}}",
+            "description": "Manual: modificar únicamente el registro ficticio recién creado. Enviar campos editables completos, sin PK.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{eventos_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Eliminar eventos",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/eventos/{{eventos_id}}",
+            "description": "Destructiva y manual. Eliminar exclusivamente el registro ficticio creado para la prueba. Revisar restricciones y reglas FK previamente."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manual · empleados",
+      "item": [
+        {
+          "name": "Crear empleados",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/empleados",
+            "description": "Manual: usar prefijo PRUEBA_LOGOS_. Configurar campos según /schema. Guardar el ID devuelto para este registro nuevo.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{empleados_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Editar empleados",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/empleados/{{empleados_id}}",
+            "description": "Manual: modificar únicamente el registro ficticio recién creado. Enviar campos editables completos, sin PK.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{empleados_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Eliminar empleados",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/empleados/{{empleados_id}}",
+            "description": "Destructiva y manual. Eliminar exclusivamente el registro ficticio creado para la prueba. Revisar restricciones y reglas FK previamente."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manual · proveedores",
+      "item": [
+        {
+          "name": "Crear proveedores",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/proveedores",
+            "description": "Manual: usar prefijo PRUEBA_LOGOS_. Configurar campos según /schema. Guardar el ID devuelto para este registro nuevo.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{proveedores_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Editar proveedores",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/proveedores/{{proveedores_id}}",
+            "description": "Manual: modificar únicamente el registro ficticio recién creado. Enviar campos editables completos, sin PK.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{proveedores_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Eliminar proveedores",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{base_url}}/proveedores/{{proveedores_id}}",
+            "description": "Destructiva y manual. Eliminar exclusivamente el registro ficticio creado para la prueba. Revisar restricciones y reglas FK previamente."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Manual · Asignaciones de evento",
+      "item": [
+        {
+          "name": "Asignar recurso",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/eventos/{{eventos_id}}/recursos/{{recurso}}",
+            "description": "Usar campos reales de la tabla intermedia sin FK al evento. Recurso: servicios, empleados o proveedores.",
+            "body": {
+              "mode": "raw",
+              "raw": "{{asignacion_body}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Editar asignación",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/eventos/{{eventos_id}}/recursos/{{recurso}}",
+            "description": "key incluye todas las PK reales; values omite PK y FK al evento.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": {{asignacion_key}},\n  \"values\": {{asignacion_body}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Retirar recurso",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/eventos/{{eventos_id}}/recursos/{{recurso}}",
+            "description": "Destructiva y manual: elimina solo la asignación identificada dentro del evento indicado.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": {{asignacion_key}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
